@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -29,6 +29,9 @@ public class Processo implements Serializable {
 
     @Column(name = "pendente")
     private Boolean pendenteParecer;
+
+    @OneToMany(mappedBy = "processo")
+    private List<UsuarioProcesso> usuariosProcesso;
 
     public Processo(String descricaoProcesso, String parecerProcesso, Boolean pendenteParecer) {
         this.descricaoProcesso = descricaoProcesso;

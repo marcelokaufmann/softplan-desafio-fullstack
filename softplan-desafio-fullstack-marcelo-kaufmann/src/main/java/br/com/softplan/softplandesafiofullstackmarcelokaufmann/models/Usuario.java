@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -32,6 +32,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "tipo")
     private String tipoUsuario;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioProcesso> usuarioProcessos;
 
     public Usuario(String nomeUsuario, String loginUsuario, String senhaUsuario, String tipoUsuario) {
         this.nomeUsuario = nomeUsuario;
