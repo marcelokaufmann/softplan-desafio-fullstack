@@ -1,0 +1,13 @@
+***** Informações Gerais *****
+
+Tecnologias utilizadas:
+- Spring Boot 2.4.2
+- Spring Data JPA
+- Lombok
+- H2 Database
+- Java 8
+
+Observações:
+- Lombok para código mais limpo;
+- H2 em memória por se projeto específico para avaliação;
+- Carga de massa de dados inicial automática para testes.

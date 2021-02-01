@@ -1,6 +1,6 @@
-INSERT INTO tb_usuario (id, nome, login, senha, tipo) VALUES (1, 'Marcelo', 'marcelo', '123', 'adm');
-INSERT INTO tb_usuario (id, nome, login, senha, tipo) VALUES (2, 'Augusto', 'augusto', '456', 'triador');
-INSERT INTO tb_usuario (id, nome, login, senha, tipo) VALUES (3, 'Kaufmann', 'kaufmann', '789', 'finalizador');
+INSERT INTO tb_usuario (login, nome_completo, senha) VALUES ('marcelo', 'Marcelo Adm', '123');
+INSERT INTO tb_usuario (login, nome_completo, senha) VALUES ('augusto', 'Augusto Triador', '456');
+INSERT INTO tb_usuario (login, nome_completo, senha) VALUES ('kaufmann', 'Kaufmann Finalizador','789');
 INSERT INTO tb_processo (id, descricao, parecer, pendente) VALUES (1, 'Processo 1', 'teste 1', false);
 INSERT INTO tb_processo (id, descricao, parecer, pendente) VALUES (2, 'Processo 2', '', true);
 INSERT INTO tb_processo (id, descricao, parecer, pendente) VALUES (3, 'Processo 3', 'teste 3', false);

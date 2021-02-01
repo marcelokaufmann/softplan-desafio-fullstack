@@ -33,9 +33,9 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+    @GetMapping("/usuarios/{login")
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("login") String login) {
+        Optional<Usuario> usuario = usuarioRepository.findById(login);
 
         if (usuario.isPresent()) {
             return new ResponseEntity<>(usuario.get(), HttpStatus.OK);
@@ -47,7 +47,7 @@ public class UsuarioController {
     @PostMapping("/usuarios")
     public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
         try {
-            Usuario _usuario = usuarioRepository.save(new Usuario(usuario.getNomeUsuario(), usuario.getLoginUsuario(), usuario.getSenhaUsuario(), usuario.getTipoUsuario()));
+            Usuario _usuario = usuarioRepository.save(new Usuario(usuario.getLogin(), usuario.getNomeCompleto(), usuario.getSenha()));
             return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -60,20 +60,18 @@ public class UsuarioController {
 
         if (usuarioData.isPresent()) {
             Usuario _usuario = usuarioData.get();
-            _usuario.setNomeUsuario(usuario.getNomeUsuario());
-            _usuario.setLoginUsuario(usuario.getLoginUsuario());
-            _usuario.setSenhaUsuario(usuario.getSenhaUsuario());
-            _usuario.setTipoUsuario(usuario.getTipoUsuario());
+            _usuario.setNomeCompleto(usuario.getNomeCompleto());
+            _usuario.setSenha(usuario.getSenha());
             return new ResponseEntity<>(usuarioRepository.save(_usuario), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/usuarios/{id}")
-    public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("id") long id) {
+    @DeleteMapping("/usuarios/{login}")
+    public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("login") String login) {
         try {
-            usuarioRepository.deleteById(id);
+            usuarioRepository.deleteById(login);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
