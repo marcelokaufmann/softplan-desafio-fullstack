@@ -17,6 +17,14 @@ public class ProcessoController {
     @Autowired
     ProcessoRepository processoRepository;
 
+    /**
+     * Método para preenchimento da grid de processos - perfil TRIADOR
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   31/01/2021
+     * @version 1.0
+     *
+     */
     @GetMapping("/processos")
     public ResponseEntity<List<Processo>> getAllProcessos() {
         try {
@@ -33,6 +41,14 @@ public class ProcessoController {
         }
     }
 
+    /**
+     * Método para visualização de processo - perfil TRIADOR ou FINALIZADOR
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   31/01/2021
+     * @version 1.0
+     *
+     */
     @GetMapping("/processos/{id}")
     public ResponseEntity<Processo> getProcessoById(@PathVariable("id") long id) {
         Optional<Processo> processo = processoRepository.findById(id);
@@ -44,6 +60,14 @@ public class ProcessoController {
         }
     }
 
+    /**
+     * Método para criação de processo - perfil TRIADOR
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   31/01/2021
+     * @version 1.0
+     *
+     */
     @PostMapping("/processos")
     public ResponseEntity<Processo> createProcesso(@RequestBody Processo processo) {
         try {
@@ -54,6 +78,14 @@ public class ProcessoController {
         }
     }
 
+    /**
+     * Método para alteração de processo - perfil FINALIZADOR
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   31/01/2021
+     * @version 1.0
+     *
+     */
     @PutMapping("/processos/{id}")
     public ResponseEntity<Processo> updateProcesso(@PathVariable("id") long id, @RequestBody Processo processo) {
         Optional<Processo> processoData = processoRepository.findById(id);

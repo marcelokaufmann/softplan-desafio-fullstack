@@ -8,11 +8,19 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Modelo para informações de processos
+ *
+ * @author Marcelo Augusto Kaufmann
+ * @since   31/01/2021
+ * @version 1.0
+ *
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_processo")
+@Table(name = "processo")
 public class Processo implements Serializable {
 
     private static final long serialVersionUID = 1L;

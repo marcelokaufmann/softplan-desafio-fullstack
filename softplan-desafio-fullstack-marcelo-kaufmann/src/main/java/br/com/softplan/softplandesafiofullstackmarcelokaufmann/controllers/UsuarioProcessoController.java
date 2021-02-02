@@ -35,6 +35,14 @@ public class UsuarioProcessoController {
         }
     }
 
+    /**
+     * Método para criação de vinculo entre usuário e processo - perfil TRIADOR
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   31/01/2021
+     * @version 1.0
+     *
+     */
     @PostMapping("/usuarioprocessos")
     public ResponseEntity<UsuarioProcesso> createUsuarioProcesso(@RequestBody UsuarioProcesso usuarioProcesso) {
         try {

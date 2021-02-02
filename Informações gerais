@@ -10,4 +10,15 @@ Tecnologias utilizadas:
 Observações:
 - Lombok para código mais limpo;
 - H2 em memória por se projeto específico para avaliação;
-- Carga de massa de dados inicial automática para testes.
+- Carga de massa de dados inicial automática para testes;
+- Dificuldade com Security por causa da criptografia hash;
+- Tentativa de configuração de acessos no objeto WebSecurityConfig.
+
+Comentários extras:
+- Conhecimento das tecnologias utilizadas antes de iniciar o projeto: Somente teórico;
+- Situação atual: Esse processo já valeu pelo aprendizado.
+
+Usuário -> senha -> perfil:
+marcelo -> 123 -> Admin
+augusto -> 456 -> Triador
+kaufmann -> 789 -> Finalizador

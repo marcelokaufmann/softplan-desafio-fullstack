@@ -11,11 +11,19 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Modelo para informações de usuários
+ *
+ * @author Marcelo Augusto Kaufmann
+ * @since   01/02/2021
+ * @version 1.0
+ *
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "usuario")
 public class Usuario implements UserDetails {
 
     @Id
@@ -26,6 +34,12 @@ public class Usuario implements UserDetails {
 
     @Column(name = "senha")
     private String senha;
+
+    @ManyToMany
+    @JoinTable(name = "usuarios_roles",joinColumns = @JoinColumn(
+            name = "usuario_id", referencedColumnName = "login"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "nomeRole"))
+    private List<Role> roles;
 
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioProcesso> usuarioProcessos;
@@ -38,7 +52,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return (Collection<? extends GrantedAuthority>) this.roles;
     }
 
     @Override
