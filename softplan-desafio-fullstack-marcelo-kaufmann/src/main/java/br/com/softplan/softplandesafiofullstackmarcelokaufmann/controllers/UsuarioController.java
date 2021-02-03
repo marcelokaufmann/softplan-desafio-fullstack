@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -32,8 +34,14 @@ public class UsuarioController {
      *
      */
     @RequestMapping(value="/usuarios/cadastrarUsuario", method=RequestMethod.POST)
-    public String form(Usuario usuario) {
+    public String form(Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/processos/{id}";
+        }
+        usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
+        attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
         return "redirect:/usuarios/cadastrarUsuario";
     }
 
@@ -117,16 +125,21 @@ public class UsuarioController {
      * @version 1.0
      *
      */
-    @PutMapping("/iniciarUsuarios/{login}")
-    public ResponseEntity<Usuario> criptograrSenhaUsuario(@PathVariable("login") String login, @RequestBody Usuario usuario) {
-        Optional<Usuario> usuarioData = usuarioRepository.findById(login);
-
-        if (usuarioData.isPresent()) {
-            Usuario _usuario = usuarioData.get();
-            _usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-            return new ResponseEntity<>(usuarioRepository.save(_usuario), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PutMapping("/iniciarUsuarios}")
+    public ResponseEntity<Usuario> criptograrSenhaUsuario() {
+        try {
+            Usuario usuarioAdmin = usuarioRepository.findByLogin("marcelo");
+            usuarioAdmin.setSenha(new BCryptPasswordEncoder().encode("123"));
+            usuarioRepository.save(usuarioAdmin);
+            Usuario usuarioTriador = usuarioRepository.findByLogin("augusto");
+            usuarioTriador.setSenha(new BCryptPasswordEncoder().encode("456"));
+            usuarioRepository.save(usuarioTriador);
+            Usuario usuarioFinalizador = usuarioRepository.findByLogin("kaufmann");
+            usuarioFinalizador.setSenha(new BCryptPasswordEncoder().encode("789"));
+            usuarioRepository.save(usuarioFinalizador);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

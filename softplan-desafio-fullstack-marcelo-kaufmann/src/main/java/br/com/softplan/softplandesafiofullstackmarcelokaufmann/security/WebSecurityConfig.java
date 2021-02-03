@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 //.antMatchers(HttpMethod.GET, "/").permitAll() // descomentar linha para autenticacao
                 .antMatchers(HttpMethod.GET, "/**").permitAll() // comentar linha para autenticacao
-                .antMatchers(HttpMethod.GET, "/iniciarusuarios/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/iniciarUsuarios/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/usuarios/**").permitAll() // comentar linha para autenticacao
                 .antMatchers(HttpMethod.GET, "/processos/**").permitAll() // comentar linha para autenticacao
                 .antMatchers(HttpMethod.POST, "/usuarios/**").permitAll() // comentar linha para autenticacao

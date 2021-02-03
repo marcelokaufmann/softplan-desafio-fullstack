@@ -7,8 +7,10 @@ import br.com.softplan.softplandesafiofullstackmarcelokaufmann.repository.Proces
 import br.com.softplan.softplandesafiofullstackmarcelokaufmann.repository.UsuarioProcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProcessoController {
@@ -33,10 +35,15 @@ public class ProcessoController {
      *
      */
     @RequestMapping(value="/processos/cadastrarProcesso", method=RequestMethod.POST)
-    public String form(Processo processo) {
+    public String form(Processo processo, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/processos/{id}";
+        }
         processo.setParecerProcesso(null);
         processo.setPendenteParecer("Sim");
         processoRepository.save(processo);
+        attributes.addFlashAttribute("mensagem", "Processo cadastrado com sucesso!");
         return "redirect:/processos/cadastrarProcesso";
     }
 
@@ -84,12 +91,17 @@ public class ProcessoController {
      *
      */
     @RequestMapping(value="/processos/{id}", method=RequestMethod.POST)
-    public String detalhesProcessoPost(@PathVariable("id") long id, Usuario usuario) {
+    public String detalhesProcessoPost(@PathVariable("id") long id, Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/processos/{id}";
+        }
         Processo processo = processoRepository.findById(id);
         UsuarioProcesso usuarioProcesso = new UsuarioProcesso();
         usuarioProcesso.setProcesso(processo);
         usuarioProcesso.setUsuario(usuario);
         usuarioProcessoRepository.save(usuarioProcesso);
+        attributes.addFlashAttribute("mensagem", "Usuário adicionado com sucesso!");
         return "redirect:/processos/{id}";
     }
 }

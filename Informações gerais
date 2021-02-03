@@ -7,6 +7,8 @@
 - H2 Database
 - Java 8
 - Framework Materialize
+- Sistema Operacional Linux Ubuntu 18.04.5 LTS
+- Browser Firefox 84.0.2
 
 ***** Observações *****
 - Lombok para código mais limpo;
@@ -17,7 +19,8 @@
 - Autenticação não consegui realizar;
 - Dificuldade com Security por causa da criptografia hash e usuários iniciais;
 - Tentativa de configuração de acessos no objeto WebSecurityConfig;
-- No console ao iniciar a aplicação mostra as 3 senhas criptografadas (cada vez que reinicia a aplicação muda a regra de criptografia, depois mantém), as quais deveriam ser atualizadas no banco para funcionar, observar comentários em WebSecurityConfig, mas não teve teste.
+- No console ao iniciar a aplicação mostra as 3 senhas criptografadas (cada vez que reinicia a aplicação muda a regra de criptografia, depois mantém), as quais deveriam ser atualizadas no banco para funcionar, observar comentários em WebSecurityConfig, mas não teve teste;
+- Perfil Finalizador pendente buscar usuário logado para buscar processos vinculados.
 
 Usuário -> senha -> perfil:
 marcelo -> 123 -> Admin
@@ -32,4 +35,4 @@ kaufmann -> 789 -> Finalizador
 ***** Processo necessário para rodar a aplicação *****
 - Para executar o sistema somente caminho padrão executando classe principal: SoftplanDesafioFullstackMarceloKaufmannApplication
 - Banco configura automático em memória
-- Chamada incial do sistema: http://localhost:8080/
+- Chamada inicial do sistema: http://localhost:8080/

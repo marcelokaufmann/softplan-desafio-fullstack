@@ -16,6 +16,9 @@
         <h1>Cadastro de Processos:</h1>
         <h3><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Início</a></h3>
         <h3><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Processos</a></h3>
+
+        <th:block th:include="mensagemValidacao"></th:block>
+
         <form class="container" method="post">
             Processo: <input type="text" value="" name="descricaoProcesso">
 
