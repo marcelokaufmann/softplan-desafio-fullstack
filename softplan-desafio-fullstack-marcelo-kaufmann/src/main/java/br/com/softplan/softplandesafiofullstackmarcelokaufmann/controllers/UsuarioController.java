@@ -128,7 +128,7 @@ public class UsuarioController {
      *
      */
     @RequestMapping(value="/iniciarUsuarios", method=RequestMethod.PUT)
-    public String criptograrSenhaUsuario(RedirectAttributes attributes) {
+    public String criptografarSenhaUsuario(RedirectAttributes attributes) {
 
         Usuario usuarioAdmin = usuarioRepository.findByLogin("marcelo");
         usuarioAdmin.setSenha(new BCryptPasswordEncoder().encode("123"));

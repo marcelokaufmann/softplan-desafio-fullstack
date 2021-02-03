@@ -13,9 +13,7 @@
 ***** Observações *****
 - Lombok para código mais limpo;
 - H2 em memória por ser projeto específico para avaliação;
-- Carga de massa de dados inicial automática para testes;
-- Utilização de framework pela falta de conhecimento nas tecnologias utilizadas e tempo para entrega.
-
+- Carga de massa de dados inicial automática para testes.
 - Autenticação não consegui realizar;
 - Dificuldade com Security por causa da criptografia hash e usuários iniciais;
 - Tentativa de configuração de acessos no objeto WebSecurityConfig;
