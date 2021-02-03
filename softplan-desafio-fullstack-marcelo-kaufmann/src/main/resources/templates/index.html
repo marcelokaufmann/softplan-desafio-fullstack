@@ -10,9 +10,20 @@
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" href="style/styleCss.css"/>
     </head>
     <body>
-        <h1>Sistema desenvolvido por Marcelo Augusto Kaufmann para teste da empresa Softplan</h1>
+        <header>
+            <nav class="menu">
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">&nbsp;Sistema desenvolvido por Marcelo Augusto Kaufmann para teste da empresa Softplan</a>
+                </div>
+            </nav>
+        </header>
+
+        <th:block th:include="mensagemValidacao"></th:block>
+
         <h3><a href="/usuarios" class="waves-effect waves-light btn"><i class="material-icons left">account_circle</i>Usuários (Admin)</a></h3>
         <h3><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">content_copy</i>Processos (Triador)</a></h3>
         <!--<h3><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">content_copy</i>Processos (Finalizador)</a></h3>-->

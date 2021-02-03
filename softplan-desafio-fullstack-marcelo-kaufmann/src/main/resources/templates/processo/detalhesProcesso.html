@@ -10,34 +10,51 @@
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" href="style/styleCss.css"/>
     </head>
     <body>
-        <h1>Processo:</h1>
-        <h3><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Início</a></h3>
-        <h3><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Processos</a></h3>
-        <div th:each="processo : ${processo}" class="container">
+        <header>
+            <nav class="menu">
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">&nbsp;Processo</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Processos</a></li>
+                        <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Início</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div th:each="processo : ${processo}" class="container detalhesProcesso">
+            <h5>Detalhes do Processo</h5>
             <div class="row">
                 <p>Processo: <span th:text="${processo.descricaoProcesso}"></span></p>
                 <p>Parecer: <span th:text="${processo.parecerProcesso}"></span></p>
                 <p>Pendente de parecer: <span th:text="${processo.pendenteParecer}"></span></p>
             </div>
-            <!-- <th:block th:include="mensagemValidacao"></th:block>
-            <form method="post">
-                Usuário: combo de usuarios para selecao
-                <button class="waves-effect waves-light btn" type="submit"> Adicionar</button>
-            </form> -->
         </div>
-        <!-- <h5>Lista Usuários: </h5>
-        <div class="container" th:each="usuarioProcesso : ${usuarioProcessos}">
-            <div class="row">
-                <div class="input-field col s3">
-                    <p><span th:text="${usuarioProcesso.usuario.login}"></span></p>
-                </div>
-                <div class="input-field col s6">
-                    <p><span th:text="${usuarioProcesso.usuario.nomeCompleto}"></span></p>
-                </div>
+            <!-- <th:block th:include="mensagemValidacao"></th:block>
+
+            <div class="container formUsuario">
+                <form method="post">
+                    Usuário: combo de usuarios para selecao
+                    <button class="waves-effect waves-light btn" type="submit"> Adicionar</button>
+                </form>
             </div>
-        </div> -->
+            <table class="container tabelaUsuario">
+            <thead>
+                <tr>
+                    <th>Login</th>
+                    <th>Nome Completo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuarioProcesso : ${usuarioProcessos}">
+                    <td><span th:text="${usuarioProcesso.usuario.login}"></span></td>
+                    <td><span th:text="${usuarioProcesso.usuario.nomeCompleto}"></span></td>
+                </tr>
+            </tbody>
+        </table> -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     </body>

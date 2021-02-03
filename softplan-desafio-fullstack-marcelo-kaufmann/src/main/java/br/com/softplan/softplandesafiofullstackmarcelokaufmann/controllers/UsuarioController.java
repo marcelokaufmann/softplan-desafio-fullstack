@@ -37,7 +37,12 @@ public class UsuarioController {
     public String form(Usuario usuario, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-            return "redirect:/processos/{id}";
+            return "redirect:/usuarios/cadastrarUsuario";
+        }
+        Usuario usuarioExiste = usuarioRepository.findByLogin(usuario.getLogin());
+        if (usuarioExiste != null) {
+            attributes.addFlashAttribute("mensagem", "Login já cadastrado, favor alterar!");
+            return "redirect:/usuarios/cadastrarUsuario";
         }
         usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
@@ -103,18 +108,15 @@ public class UsuarioController {
      * Método para exclusão de usuário - perfil ADMIN
      *
      * @author Marcelo Augusto Kaufmann
-     * @since   31/01/2021
+     * @since   03/02/2021
      * @version 1.0
      *
      */
-    @DeleteMapping("/usuarios/{login}")
-    public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("login") String login) {
-        try {
-            usuarioRepository.deleteById(login);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping("/usuarios/deletarUsuario")
+    public String deletarUsuario(String login){
+        Usuario usuario = usuarioRepository.findByLogin(login);
+        usuarioRepository.delete(usuario);
+        return "redirect:/usuarios";
     }
 
     /**
@@ -125,21 +127,19 @@ public class UsuarioController {
      * @version 1.0
      *
      */
-    @PutMapping("/iniciarUsuarios}")
-    public ResponseEntity<Usuario> criptograrSenhaUsuario() {
-        try {
-            Usuario usuarioAdmin = usuarioRepository.findByLogin("marcelo");
-            usuarioAdmin.setSenha(new BCryptPasswordEncoder().encode("123"));
-            usuarioRepository.save(usuarioAdmin);
-            Usuario usuarioTriador = usuarioRepository.findByLogin("augusto");
-            usuarioTriador.setSenha(new BCryptPasswordEncoder().encode("456"));
-            usuarioRepository.save(usuarioTriador);
-            Usuario usuarioFinalizador = usuarioRepository.findByLogin("kaufmann");
-            usuarioFinalizador.setSenha(new BCryptPasswordEncoder().encode("789"));
-            usuarioRepository.save(usuarioFinalizador);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping(value="/iniciarUsuarios", method=RequestMethod.PUT)
+    public String criptograrSenhaUsuario(RedirectAttributes attributes) {
+
+        Usuario usuarioAdmin = usuarioRepository.findByLogin("marcelo");
+        usuarioAdmin.setSenha(new BCryptPasswordEncoder().encode("123"));
+        usuarioRepository.save(usuarioAdmin);
+        Usuario usuarioTriador = usuarioRepository.findByLogin("augusto");
+        usuarioTriador.setSenha(new BCryptPasswordEncoder().encode("456"));
+        usuarioRepository.save(usuarioTriador);
+        Usuario usuarioFinalizador = usuarioRepository.findByLogin("kaufmann");
+        usuarioFinalizador.setSenha(new BCryptPasswordEncoder().encode("789"));
+        usuarioRepository.save(usuarioFinalizador);
+        attributes.addFlashAttribute("mensagem", "Senhas iniciais criptografadas com sucesso!");
+        return "redirect:/";
     }
 }
