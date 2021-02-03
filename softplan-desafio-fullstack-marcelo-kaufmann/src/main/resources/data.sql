@@ -10,8 +10,8 @@ INSERT INTO usuarios_roles (usuario_id, role_id) VALUES ('marcelo', 'ROLE_ADMIN'
 INSERT INTO usuarios_roles (usuario_id, role_id) VALUES ('augusto', 'ROLE_TRIADOR');
 INSERT INTO usuarios_roles (usuario_id, role_id) VALUES ('kaufmann', 'ROLE_FINALIZADOR');
 
-INSERT INTO processo (id, descricao, parecer, pendente) VALUES (1, 'Processo 1', 'teste 1', false);
-INSERT INTO processo (id, descricao, parecer, pendente) VALUES (2, 'Processo 2', '', true);
-INSERT INTO processo (id, descricao, parecer, pendente) VALUES (3, 'Processo 3', 'teste 3', false);
-INSERT INTO usuario_processo (id, usuario_id, processo_id, data) VALUES (1, 'kaufmann', 1, '2021-01-30');
-INSERT INTO usuario_processo (id, usuario_id, processo_id, data) VALUES (2, 'kaufmann', 3, '2021-01-31');
+--INSERT INTO processo (id, descricao, parecer, pendente) VALUES (1, 'Processo 1', 'teste 1', 'Não');
+--INSERT INTO processo (id, descricao, parecer, pendente) VALUES (2, 'Processo 2', '', 'Sim');
+--INSERT INTO processo (id, descricao, parecer, pendente) VALUES (3, 'Processo 3', 'teste 3', 'Não');
+--INSERT INTO usuario_processo (id, usuario_id, processo_id, data) VALUES (1, 'kaufmann', 1, '2021-01-30');
+--INSERT INTO usuario_processo (id, usuario_id, processo_id, data) VALUES (2, 'kaufmann', 3, '2021-01-31');

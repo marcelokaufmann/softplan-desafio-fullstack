@@ -1,6 +1,5 @@
 package br.com.softplan.softplandesafiofullstackmarcelokaufmann;
 
-import br.com.softplan.softplandesafiofullstackmarcelokaufmann.controllers.UsuarioController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

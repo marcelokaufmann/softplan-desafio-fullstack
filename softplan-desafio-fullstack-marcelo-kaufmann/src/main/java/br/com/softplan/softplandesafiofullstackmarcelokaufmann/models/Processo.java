@@ -36,12 +36,12 @@ public class Processo implements Serializable {
     private String parecerProcesso;
 
     @Column(name = "pendente")
-    private Boolean pendenteParecer;
+    private String pendenteParecer;
 
     @OneToMany(mappedBy = "processo")
     private List<UsuarioProcesso> usuariosProcesso;
 
-    public Processo(String descricaoProcesso, String parecerProcesso, Boolean pendenteParecer) {
+    public Processo(String descricaoProcesso, String parecerProcesso, String pendenteParecer) {
         this.descricaoProcesso = descricaoProcesso;
         this.parecerProcesso = parecerProcesso;
         this.pendenteParecer = pendenteParecer;

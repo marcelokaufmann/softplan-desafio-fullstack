@@ -1,24 +1,35 @@
 ***** Informações Gerais *****
 
-Tecnologias utilizadas:
+***** Tecnologias utilizadas *****
 - Spring Boot 2.4.2
 - Spring Data JPA
 - Lombok
 - H2 Database
 - Java 8
+- Framework Materialize
 
-Observações:
+***** Observações *****
 - Lombok para código mais limpo;
-- H2 em memória por se projeto específico para avaliação;
+- H2 em memória por ser projeto específico para avaliação;
 - Carga de massa de dados inicial automática para testes;
-- Dificuldade com Security por causa da criptografia hash;
-- Tentativa de configuração de acessos no objeto WebSecurityConfig.
+- Utilização de framework pela falta de conhecimento nas tecnologias utilizadas e tempo para entrega.
 
-Comentários extras:
-- Conhecimento das tecnologias utilizadas antes de iniciar o projeto: Somente teórico;
-- Situação atual: Esse processo já valeu pelo aprendizado.
+- Autenticação não consegui realizar;
+- Dificuldade com Security por causa da criptografia hash e usuários iniciais;
+- Tentativa de configuração de acessos no objeto WebSecurityConfig;
+- No console ao iniciar a aplicação mostra as 3 senhas criptografadas (cada vez que reinicia a aplicação muda a regra de criptografia, depois mantém), as quais deveriam ser atualizadas no banco para funcionar, observar comentários em WebSecurityConfig, mas não teve teste.
 
 Usuário -> senha -> perfil:
 marcelo -> 123 -> Admin
 augusto -> 456 -> Triador
 kaufmann -> 789 -> Finalizador
+
+***** Comentários extras *****
+- Conhecimento das tecnologias utilizadas antes de iniciar o projeto: Somente teórico de algumas;
+- Primeira vez que começo um projeto, sempre trabalhei com sistema legado;
+- Situação atual: Esse processo já valeu pelo aprendizado.
+
+***** Processo necessário para rodar a aplicação *****
+- Para executar o sistema somente caminho padrão executando classe principal: SoftplanDesafioFullstackMarceloKaufmannApplication
+- Banco configura automático em memória
+- Chamada incial do sistema: http://localhost:8080/

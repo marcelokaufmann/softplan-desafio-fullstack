@@ -21,10 +21,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/").permitAll()
+                //.antMatchers(HttpMethod.GET, "/").permitAll() // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.GET, "/**").permitAll() // comentar linha para autenticacao
                 .antMatchers(HttpMethod.GET, "/iniciarusuarios/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/usuarios/**").permitAll() // comentar linha para autenticacao
                 .antMatchers(HttpMethod.GET, "/processos/**").permitAll() // comentar linha para autenticacao
+                .antMatchers(HttpMethod.POST, "/usuarios/**").permitAll() // comentar linha para autenticacao
+                .antMatchers(HttpMethod.POST, "/processos/**").permitAll() // comentar linha para autenticacao
                 //.antMatchers(HttpMethod.GET, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
                 //.antMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
                 //.antMatchers(HttpMethod.PUT, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
@@ -46,6 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-
+        web.ignoring().antMatchers("/materialize/**", "/style/**");
     }
 }

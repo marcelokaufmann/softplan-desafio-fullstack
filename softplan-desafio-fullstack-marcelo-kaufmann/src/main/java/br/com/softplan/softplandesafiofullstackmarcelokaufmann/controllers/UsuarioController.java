@@ -6,77 +6,67 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class UsuarioController {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
-    /**
-     * Método para preenchimento da grid de usuários - perfil ADMIN
-     *
-     * @author Marcelo Augusto Kaufmann
-     * @since   31/01/2021
-     * @version 1.0
-     *
-     */
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<Usuario>> getAllUsuarios() {
-        try {
-            List<Usuario> usuarios = new ArrayList<Usuario>();
-            usuarioRepository.findAll().forEach(usuarios::add);
-
-            if (usuarios.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(usuarios, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-     * Método para preenchimento da visualização de usuário em específico - perfil ADMIN
-     *
-     * @author Marcelo Augusto Kaufmann
-     * @since   31/01/2021
-     * @version 1.0
-     *
-     */
-    @GetMapping("/usuarios/{login")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("login") String login) {
-        Optional<Usuario> usuario = usuarioRepository.findById(login);
-
-        if (usuario.isPresent()) {
-            return new ResponseEntity<>(usuario.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @RequestMapping(value="/usuarios/cadastrarUsuario", method=RequestMethod.GET)
+    public String form() {
+        return "usuario/formUsuario";
     }
 
     /**
      * Método para inclusão de usuário - perfil ADMIN
      *
      * @author Marcelo Augusto Kaufmann
-     * @since   31/01/2021
+     * @since   02/02/2021
      * @version 1.0
      *
      */
-    @PostMapping("/usuarios")
-    public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
-        try {
-            Usuario _usuario = usuarioRepository.save(new Usuario(usuario.getLogin(), usuario.getNomeCompleto(), new BCryptPasswordEncoder().encode(usuario.getSenha())));
-            return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping(value="/usuarios/cadastrarUsuario", method=RequestMethod.POST)
+    public String form(Usuario usuario) {
+        usuarioRepository.save(usuario);
+        return "redirect:/usuarios/cadastrarUsuario";
+    }
+
+    /**
+     * Método para preenchimento da grid de usuários - perfil ADMIN
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   02/02/2021
+     * @version 1.0
+     *
+     */
+    @RequestMapping("/usuarios")
+    public ModelAndView listaUsuarios() {
+        ModelAndView mv = new ModelAndView("usuarios");
+        Iterable<Usuario> usuarios = usuarioRepository.findAll();
+        mv.addObject("usuarios", usuarios);
+        return mv;
+    }
+
+    /**
+     * Método para preenchimento da visualização de usuário em específico - perfil ADMIN
+     *
+     * @author Marcelo Augusto Kaufmann
+     * @since   02/02/2021
+     * @version 1.0
+     *
+     */
+    @RequestMapping(value="/usuarios/{login}", method=RequestMethod.GET)
+    public ModelAndView detalhesUsuario(@PathVariable("login") String login) {
+        Usuario usuario = usuarioRepository.findByLogin(login);
+        ModelAndView mv = new ModelAndView("usuario/detalhesUsuario");
+        mv.addObject("usuario", usuario);
+        return mv;
     }
 
     /**
