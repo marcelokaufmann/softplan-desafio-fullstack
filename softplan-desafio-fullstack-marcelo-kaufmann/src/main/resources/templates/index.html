@@ -23,11 +23,13 @@
         </header>
 
         <th:block th:include="mensagemValidacao"></th:block>
-
+        <br>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" />
+        </form>
         <h3><a href="/usuarios" class="waves-effect waves-light btn"><i class="material-icons left">account_circle</i>Usuários (Admin)</a></h3>
-        <h3><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">content_copy</i>Processos (Triador)</a></h3>
-        <!--<h3><a href="/processos" class="waves-effect waves-light btn"><i class="material-icons left">content_copy</i>Processos (Finalizador)</a></h3>-->
-        <!--<h3><a href="/iniciarUsuarios" class="waves-effect waves-light btn"><i class="material-icons left">build</i>Criptografia inicial</a></h3>-->
+        <h3><a href="/processosTriador" class="waves-effect waves-light btn"><i class="material-icons left">content_copy</i>Processos (Triador)</a></h3>
+        <h3><a href="/processosFinalizador" class="waves-effect waves-light btn"><i class="material-icons left">content_copy</i>Processos (Finalizador)</a></h3>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

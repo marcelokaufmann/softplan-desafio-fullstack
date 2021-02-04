@@ -1,6 +1,6 @@
-INSERT INTO usuario (login, nome_completo, senha) VALUES ('marcelo', 'Marcelo Adm', '123');
-INSERT INTO usuario (login, nome_completo, senha) VALUES ('augusto', 'Augusto Triador', '456');
-INSERT INTO usuario (login, nome_completo, senha) VALUES ('kaufmann', 'Kaufmann Finalizador', '789');
+INSERT INTO usuario (login, nome_completo, senha) VALUES ('marcelo', 'Marcelo Adm', '$2a$10$hT85TualuIHi8gUv9aoaR.PRNp7YgNnvN.zCQO4PJsJMMTepbhvfS');
+INSERT INTO usuario (login, nome_completo, senha) VALUES ('augusto', 'Augusto Triador', '$2a$10$HAWyHuCMFaxGGNlfsmmRMOZdqX/nNIVvgEOiPot5TR/3aQsVbshS2');
+INSERT INTO usuario (login, nome_completo, senha) VALUES ('kaufmann', 'Kaufmann Finalizador', '$2a$10$bYKWs1SC9Km/i1S/66A1dOg55gdnmlR1YDGleVvCtEpzWJxZ2ER1W');
 
 INSERT INTO role (nome_role) VALUES ('ROLE_ADMIN');
 INSERT INTO role (nome_role) VALUES ('ROLE_TRIADOR');

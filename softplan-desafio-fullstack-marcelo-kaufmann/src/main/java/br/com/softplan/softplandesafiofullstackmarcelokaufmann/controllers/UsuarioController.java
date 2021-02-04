@@ -118,28 +118,4 @@ public class UsuarioController {
         usuarioRepository.delete(usuario);
         return "redirect:/usuarios";
     }
-
-    /**
-     * Método para alterar senha de usuários ainda sem criptografia
-     *
-     * @author Marcelo Augusto Kaufmann
-     * @since   01/02/2021
-     * @version 1.0
-     *
-     */
-    @RequestMapping(value="/iniciarUsuarios", method=RequestMethod.PUT)
-    public String criptografarSenhaUsuario(RedirectAttributes attributes) {
-
-        Usuario usuarioAdmin = usuarioRepository.findByLogin("marcelo");
-        usuarioAdmin.setSenha(new BCryptPasswordEncoder().encode("123"));
-        usuarioRepository.save(usuarioAdmin);
-        Usuario usuarioTriador = usuarioRepository.findByLogin("augusto");
-        usuarioTriador.setSenha(new BCryptPasswordEncoder().encode("456"));
-        usuarioRepository.save(usuarioTriador);
-        Usuario usuarioFinalizador = usuarioRepository.findByLogin("kaufmann");
-        usuarioFinalizador.setSenha(new BCryptPasswordEncoder().encode("789"));
-        usuarioRepository.save(usuarioFinalizador);
-        attributes.addFlashAttribute("mensagem", "Senhas iniciais criptografadas com sucesso!");
-        return "redirect:/";
-    }
 }

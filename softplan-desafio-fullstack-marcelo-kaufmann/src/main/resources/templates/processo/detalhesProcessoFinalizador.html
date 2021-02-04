@@ -17,25 +17,22 @@
         <header>
             <nav class="menu">
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">&nbsp;Cadastro de Processos</a>
+                    <a href="#" class="brand-logo">&nbsp;Processo</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="/processosTriador" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Processos</a></li>
+                        <li><a href="/processosFinalizador" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Processos</a></li>
                         <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Início</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
-
-        <th:block th:include="mensagemValidacao"></th:block>
-
-        <div class="container formProcesso">
-            <form class="container" method="post">
-                Processo: <input type="text" value="" name="descricaoProcesso">
-
-                <button class="waves-effect waves-light btn" type="submit">Salvar</button>
-            </form>
+        <div th:each="processo : ${processo}" class="container detalhesProcesso">
+            <h5>Detalhes do Processo</h5>
+            <div class="row">
+                <p>Processo: <span th:text="${processo.descricaoProcesso}"></span></p>
+                <p>Parecer: <span th:text="${processo.parecerProcesso}"></span></p>
+                <p>Pendente de parecer: <span th:text="${processo.pendenteParecer}"></span></p>
+            </div>
         </div>
-
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
     </body>

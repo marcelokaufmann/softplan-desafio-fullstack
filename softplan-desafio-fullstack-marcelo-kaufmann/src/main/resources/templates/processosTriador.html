@@ -19,7 +19,7 @@
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">&nbsp;Lista de Processos</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="/processos/cadastrarProcesso" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Processo</a></li>
+                        <li><a href="/processosTriador/cadastrarProcesso" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Processo</a></li>
                         <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Início</a></li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
             <tbody>
                 <tr th:each="processo : ${processos}">
                     <div class="row">
-                        <td><a th:href="${(#mvc.url('PC#detalhesProcesso').arg(0, processo.id)).build()}"><span th:text="${processo.descricaoProcesso}"></span></a></td>
+                        <td><a th:href="${(#mvc.url('PC#detalhesProcessoTriador').arg(0, processo.id)).build()}"><span th:text="${processo.descricaoProcesso}"></span></a></td>
                         <td><span th:text="${processo.parecerProcesso}"></span></td>
                         <td><span th:text="${processo.pendenteParecer}"></span></td>
                     </div>

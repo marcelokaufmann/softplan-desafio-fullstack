@@ -21,21 +21,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                //.antMatchers(HttpMethod.GET, "/").permitAll() // descomentar linha para autenticacao
-                .antMatchers(HttpMethod.GET, "/**").permitAll() // comentar linha para autenticacao
-                .antMatchers(HttpMethod.PUT, "/iniciarUsuarios/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/usuarios/**").permitAll() // comentar linha para autenticacao
-                .antMatchers(HttpMethod.GET, "/processos/**").permitAll() // comentar linha para autenticacao
-                .antMatchers(HttpMethod.POST, "/usuarios/**").permitAll() // comentar linha para autenticacao
-                .antMatchers(HttpMethod.POST, "/processos/**").permitAll() // comentar linha para autenticacao
-                //.antMatchers(HttpMethod.GET, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.PUT, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.DELETE, "/usuarios").hasRole("ADMIN") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.GET, "/processos").hasRole("TRIADOR") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.POST, "/processos").hasRole("TRIADOR") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.GET, "/processos").hasRole("FINALIZADOR") // descomentar linha para autenticacao
-                //.antMatchers(HttpMethod.PUT, "/processos").hasRole("FINALIZADOR") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.GET, "/").permitAll() // descomentar linha para autenticacao
+                //.antMatchers(HttpMethod.GET, "/**").permitAll() // comentar linha para autenticacao
+                //.antMatchers(HttpMethod.GET, "/usuarios/**").permitAll() // comentar linha para autenticacao
+                //.antMatchers(HttpMethod.GET, "/processos/**").permitAll() // comentar linha para autenticacao
+                //.antMatchers(HttpMethod.POST, "/usuarios/**").permitAll() // comentar linha para autenticacao
+                //.antMatchers(HttpMethod.POST, "/processos/**").permitAll() // comentar linha para autenticacao
+                .antMatchers(HttpMethod.GET, "/usuarios/**").hasRole("ADMIN") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.POST, "/usuarios/**").hasRole("ADMIN") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.PUT, "/usuarios/**").hasRole("ADMIN") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.DELETE, "/usuarios/**").hasRole("ADMIN") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.GET, "/processosTriador/**").hasRole("TRIADOR") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.POST, "/processosTriador/**").hasRole("TRIADOR") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.GET, "/processosFinalizador/**").hasRole("FINALIZADOR") // descomentar linha para autenticacao
+                .antMatchers(HttpMethod.PUT, "/processosFinalizador/**").hasRole("FINALIZADOR") // descomentar linha para autenticacao
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

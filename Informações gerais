@@ -14,11 +14,10 @@
 - Lombok para código mais limpo;
 - H2 em memória por ser projeto específico para avaliação;
 - Carga de massa de dados inicial automática para testes.
-- Autenticação não consegui realizar;
-- Dificuldade com Security por causa da criptografia hash e usuários iniciais;
-- Tentativa de configuração de acessos no objeto WebSecurityConfig;
-- No console ao iniciar a aplicação mostra as 3 senhas criptografadas (cada vez que reinicia a aplicação muda a regra de criptografia, depois mantém), as quais deveriam ser atualizadas no banco para funcionar, observar comentários em WebSecurityConfig, mas não teve teste;
-- Perfil Finalizador pendente buscar usuário logado para buscar processos vinculados.
+- Perfil Finalizador pendente buscar somente do usuário logado.
+- Faltou tratamento quando acesso pelo perfil sem autorização, quando tela de erro tem de voltar e fazer logout/login com usuário correto para menu desejado.
+- Faltou etapa de vincular tanto Usuario/Perfil como Usuário/Processo.
+- Faltou telas de alteração por parte do Administrador e Finalizador.
 
 Usuário -> senha -> perfil:
 marcelo -> 123 -> Admin
